@@ -23,6 +23,7 @@ port = process.env.PORT || 5000
 
 User = require('./models/userListModel')
 ImageSchema = require('./models/imageModel')
+blogSchema = require('./models/blogModel')
 
 mongoose.Promise = global.Promise
 const uri = process.env.MONGO_URI
@@ -34,9 +35,11 @@ mongoose.connect(uri, function(error){
 
 var routes = require('./routes/imageListRoutes');
 var userRoutes = require('./routes/userRoutes');
+var blogRoutes = require('./routes/blogRoutes');
 
 routes(app)
 userRoutes(app)
+blogRoutes(app)
 
 app.listen(port)
 console.log('Started on : ' + port)
