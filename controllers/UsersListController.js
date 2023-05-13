@@ -1,6 +1,5 @@
 'use strict'
 
-const { query } = require('express')
 var mongoose = require('mongoose')
 User = mongoose.model('Users')
 
@@ -21,7 +20,15 @@ exports.getUserbyUID = function(req,res){
     })
 }
 
-
+exports.updateUser = function(req, res) {
+    var newUser = {}
+    newUser = req.body
+    console.log(req.body)
+    User.findByIdAndUpdate(req.params._id, newUser, {new: true}, function(err, Users) {
+        if (err) throw err
+        res.json(Users)
+    })
+}
 
 exports.readContact= function(req,res){
     console.log(req.params.id)
@@ -38,7 +45,6 @@ exports.deleteContact = function(req,res){
         const response = {
             message: "Delete user id : " + req.params.id,
             id: Contacts._id
-
         }
         res.json(response)
     })

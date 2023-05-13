@@ -6,4 +6,5 @@ module.exports = function(app){
     app.route('/user')
         .post(UserList.registerUser)
     app.get('/user/:uid',UserList.getUserbyUID)
+    app.put('/user/:_id',UserList.updateUser)
 }
