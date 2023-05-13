@@ -1,24 +1,28 @@
 'use strict'
 
+const { query } = require('express')
 var mongoose = require('mongoose')
 User = mongoose.model('Users')
 
-exports.listAllContact = function(req,res){
-    var query = {sort: {firstName: 1}}
-    User.find({}, null, query, function(err, Contacts){
-        if(err) throw err
-        console.log(Contacts)
-        res.json(Contacts)
-    })
-}
-exports.createContact = function(req,res){
+exports.registerUser = function(req,res){
     var newUser = new User(req.body)
-    console.log(req.body)
-    newUser.save(function(err, Contacts){
+    newUser.save(function(err, Users){
         if(err) throw err
-        res.json(Contacts)
+        res.json(Users)
     })
 }
+
+exports.getUserbyUID = function(req,res){
+    console.log(req.params.uid)
+    var query = {uid: req.params.uid}
+    User.find(query,function(err,Users){
+        if(err) throw err
+        res.json(Users)
+    })
+}
+
+
+
 exports.readContact= function(req,res){
     console.log(req.params.id)
     User.findById(req.params.id, function(err,Contacts){

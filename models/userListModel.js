@@ -3,33 +3,45 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
 var UserSchema = new Schema({ //Json Schema Validate
-    cid: {
+    uid: {
         type: String,
-        required: 'Please enter'
-    },
-    firstName: {
-        type: String,
-        required: 'Please enter'
-    },
-    lastName: {
-        type: String,
-        required: 'Please enter'
+        // required: 'Please enter'
     },
     email: {
         type: String,
-        default: null
+        // required: 'Please enter'
     },
-    mobile: {
+    username: {
         type: String,
-        required: 'Please enter'
+        // required: 'Please enter'
+    },
+    firstname: {
+        type: String,
+        // required: 'Please enter'
+    },
+    lastname: {
+        type: String,
+        // required: 'Please enter'
+    },
+    picture_uri: {
+        type: String,
+        // required: 'Please enter'
+    },
+    phone: {
+        type: String,
+        default: null
     },
     facebook: {
         type: String,
         default: null
     },
-    imageUrl: {
+    twitter: {
         type: String,
         default: null
+    },
+    point:{
+        type: Number,
+        default: 0
     }
-},{collection : 'Contacts'})
+},{collection : 'Users'})
 module.exports = mongoose.model('Users', UserSchema)

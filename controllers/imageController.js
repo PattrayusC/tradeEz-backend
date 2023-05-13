@@ -3,7 +3,7 @@ var path = require('path');
 var mongoose = require('mongoose')
 Images = mongoose.model('Images')
 
- 
+
 exports.getimages= function(req,res){
     Images.find({})
     .then((data, err)=>{
@@ -24,12 +24,13 @@ exports.getimagesById= function(req,res){
         if(err){
             console.log(err);
         }
+        imguri = "data:".concat(data.img.contentType,";base64,",data.img.data.toString('base64'))
         res.json({
             _id:data._id,
             name:data.name,
             desc:data.desc,
             type:data.contentType,
-            uri:data.img.data.toString('base64')
+            uri:imguri
         });
     })
 }
@@ -44,26 +45,14 @@ exports.uploadimage = function(req,res,next){
         }
     }
     var newImage = new Images(obj)
+
+    var imguri = "data:".concat(newImage.img.contentType,";base64,",newImage.img.data.toString('base64'))
     newImage.save(function(err, Images){
         if(err) throw err
         else res.json({
           massage: 'Upload Successfully !!',
-          id: Images._id
+          uri: imguri
         });
         console.log('Upload Successfully !!')
     })
-    // Images.create(obj).then ((err, item) => {
-    //     if (err) {
-    //         console.log(err);
-    //     }
-    //     else {
-    //         // item.save();
-    //         // res.redirect('/');
-    //         console.log("upload done");
-    //         res.json({
-    //             massage: 'Upload Successfully aa!!',
-    //         });
-    //     }
-    // }
-    // );
 }
