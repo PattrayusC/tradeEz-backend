@@ -24,9 +24,8 @@ var blogSchema = new mongoose.Schema({
     announce: {
         type: Boolean,
         default: false
-    }
-
-    //ยังไม่มีส่วนของ comment
+    },
+    offers: Array,
 },{collection : 'blogs'});
 
 module.exports = mongoose.model('Blogs', blogSchema);
