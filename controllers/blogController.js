@@ -38,3 +38,17 @@ exports.readBlog = function(req, res) {
         res.json(Blogs)
     })
 }
+
+exports.readLatestBlog = function(req,res){
+    Blog.find({},null,{limit: 6, sort:{'time': -1}},function(err,Blogs){
+        if (err) throw err
+        res.json(Blogs)
+    })
+}
+
+exports.readAllBlog = function(req,res){
+    Blog.find({},null,{skip: 6,sort:{'time': -1}},function(err,Blogs){
+        if (err) throw err
+        res.json(Blogs)
+    })
+}
