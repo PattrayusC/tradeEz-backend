@@ -33,11 +33,11 @@ var UserSchema = new Schema({ //Json Schema Validate
     },
     facebook: {
         type: String,
-        default: null
+        default: "facebook.com/"
     },
     twitter: {
         type: String,
-        default: null
+        default: "twitter.com/"
     },
     point:{
         type: Number,
