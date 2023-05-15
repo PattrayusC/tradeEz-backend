@@ -58,3 +58,11 @@ exports.readAllBlog = function(req,res){
         res.json(Blogs)
     })
 }
+
+exports.readAnnouceBlog = function(req,res){
+    let query = {announce: true}
+    Blog.find(query,function(err,blogs){
+        if(err) throw err
+        res.json(blogs)
+    })
+}

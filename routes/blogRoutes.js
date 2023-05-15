@@ -14,4 +14,6 @@ module.exports = function(app){
         .get(blogList.readLatestBlog)
     app.route('/allblog')
         .get(blogList.readAllBlog)
+    app.route('/annouceblog')
+        .get(blogList.readAnnouceBlog)
 }
