@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var blogSchema = new mongoose.Schema({
     // _id: ObjectId,
     author: String,
+    author_name: String,
     product_img: {
         type:String,
         default: 'https://cdn.discordapp.com/attachments/406860361086795776/1107037653288878120/No_image_available.png'
@@ -13,7 +14,7 @@ var blogSchema = new mongoose.Schema({
     price: Number,
     shipping_cost: Number,
     description: String,
-    like: Number,
+    likes: Array,
     time: Date,
     sold: Boolean,
     categories: Array,
