@@ -34,7 +34,13 @@ exports.deleteBlog = function(req, res) {
 exports.readBlog = function(req, res) {
     console.log(req.params.blogId)
     Blog.findById(req.params.blogId, function(err, Blogs) {
-        if (err) throw err
+        console.log(Blogs)
+        if (err) {
+            return res.status(500).json({ error: 'Server error' });
+        }
+        if (!Blogs) {
+            return res.status(404).json({ error: 'Blog not found' });
+        }
         res.json(Blogs)
     })
 }
