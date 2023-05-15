@@ -12,9 +12,9 @@ exports.registerUser = function(req,res){
 }
 
 exports.getUserbyUID = function(req,res){
-    console.log(req.params.uid)
+    console.log('get userdata => '+ req.params.uid)
     var query = {uid: req.params.uid}
-    User.find(query,function(err,Users){
+    User.find(query,function(err,Users){ 
         if(err) throw err
         res.json(Users)
     })
