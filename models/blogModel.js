@@ -14,7 +14,7 @@ var blogSchema = new mongoose.Schema({
     price: Number,
     shipping_cost: Number,
     description: String,
-    like: {
+    likes: {
         type:Array,
         default:[]
     },
