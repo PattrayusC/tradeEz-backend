@@ -10,8 +10,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json({limit: '50mb'})) // To parse the incoming requests with JSON payloads
 app.use(express.urlencoded({limit: '50mb'}));
 app.use(cors())
-app.use(bodyParser())
-app.set("view engine", "ejs");
+
 
 
 //const bodyParser = require('body-parser')
