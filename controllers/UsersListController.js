@@ -51,3 +51,26 @@ exports.updataMyorder = function(req,res){
         }
     })
 }
+
+exports.joinEvent = function(req,res){
+    var query = {uid: req.params.uid}
+    User.find(query,function(err,Users){ 
+        if(err) throw err
+        if(Users[0].orderBlog.includes(req.body._id)){
+            console.log("Already have")
+            res.json({
+                joined: true
+            })
+        }else{
+            Users[0].orderBlog.push(req.body._id)
+            Users[0].point = Users[0].point + 1
+            console.log("point added => " + Users[0].point)
+            Users[0].save(function(err, Userss){
+            if(err) throw err
+            res.json({
+                joined: false
+            })
+        })
+        }
+    })
+}
