@@ -61,8 +61,29 @@ exports.readAllBlog = function(req,res){
 
 exports.readAnnouceBlog = function(req,res){
     let query = {announce: true}
-    Blog.find(query,function(err,blogs){
+    Blog.find(query,null,{limit: 6, sort:{'time': -1}},function(err,blogs){
         if(err) throw err
+        res.json(blogs)
+    })
+}
+
+exports.readRewardBlog = function(req,res){
+    let query = {reward: true}
+    Blog.find(query,null,{sort:{'time': -1}},function(err,blogs){
+        if(err) throw err
+        res.json(blogs)
+    })
+}
+
+exports.readBlogByUID = function(req,res){
+    let query = {author: req.params.uid}
+    Blog.find(query,{sort:{'time': -1}},function(err,blogs){ 
+        if (err) {
+            return res.status(500).json({ error: 'Server error' });
+        }
+        if (!blogs) {
+            return res.status(404).json({ error: 'Blog not found' });
+        }
         res.json(blogs)
     })
 }

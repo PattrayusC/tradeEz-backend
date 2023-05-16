@@ -16,4 +16,8 @@ module.exports = function(app){
         .get(blogList.readAllBlog)
     app.route('/annouceblog')
         .get(blogList.readAnnouceBlog)
+    app.route('/blogByUID/:uid')
+        .get(blogList.readBlogByUID)
+    app.route('/rewardblog')
+        .get(blogList.readRewardBlog)
 }
