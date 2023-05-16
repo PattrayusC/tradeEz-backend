@@ -42,6 +42,10 @@ var UserSchema = new Schema({ //Json Schema Validate
     point:{
         type: Number,
         default: 0
+    },
+    orderBlog:{
+        type: Array,
+        default: []
     }
 },{collection : 'Users'})
 module.exports = mongoose.model('Users', UserSchema)

@@ -20,4 +20,6 @@ module.exports = function(app){
         .get(blogList.readBlogByUID)
     app.route('/rewardblog')
         .get(blogList.readRewardBlog)
+    app.route('/getManyBlog')
+        .post(blogList.readManyBlogByID)
 }

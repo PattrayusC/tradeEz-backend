@@ -7,4 +7,5 @@ module.exports = function(app){
         .post(UserList.registerUser)
     app.get('/user/:uid',UserList.getUserbyUID)
     app.put('/user/:_id',UserList.updateUser)
+    app.put('/updateOrder/:uid',UserList.updataMyorder)
 }

@@ -46,21 +46,23 @@ exports.readBlog = function(req, res) {
 }
 
 exports.readLatestBlog = function(req,res){
-    Blog.find({},null,{limit: 6, sort:{'time': -1}},function(err,Blogs){
+    let query = {sold: false}
+    Blog.find(query,null,{limit: 6, sort:{'time': -1}},function(err,Blogs){
         if (err) throw err
         res.json(Blogs)
     })
 }
 
 exports.readAllBlog = function(req,res){
-    Blog.find({},null,{skip: 6,sort:{'time': -1}},function(err,Blogs){
+    let query = {sold: false}
+    Blog.find(query,null,{skip: 6,sort:{'time': -1}},function(err,Blogs){
         if (err) throw err
         res.json(Blogs)
     })
 }
 
 exports.readAnnouceBlog = function(req,res){
-    let query = {announce: true}
+    let query = {announce: true,sold: false}
     Blog.find(query,null,{limit: 6, sort:{'time': -1}},function(err,blogs){
         if(err) throw err
         res.json(blogs)
@@ -68,7 +70,7 @@ exports.readAnnouceBlog = function(req,res){
 }
 
 exports.readRewardBlog = function(req,res){
-    let query = {reward: true}
+    let query = {reward: true,sold: false}
     Blog.find(query,null,{sort:{'time': -1}},function(err,blogs){
         if(err) throw err
         res.json(blogs)
@@ -77,7 +79,8 @@ exports.readRewardBlog = function(req,res){
 
 exports.readBlogByUID = function(req,res){
     let query = {author: req.params.uid}
-    Blog.find(query,{sort:{'time': -1}},function(err,blogs){ 
+    console.log(req.params.uid)
+    Blog.find(query,null,{sort:{'time': -1}},function(err,blogs){ 
         if (err) {
             return res.status(500).json({ error: 'Server error' });
         }
@@ -87,3 +90,17 @@ exports.readBlogByUID = function(req,res){
         res.json(blogs)
     })
 }
+
+exports.readManyBlogByID = function(req,res){
+    let query = {'_id': {$in:req.body}}
+    console.log(req.body)
+   Blog.find(query,null,{sort:{'time': -1}},function(err,blogs){ 
+    if (err) {
+        return res.status(500).json({ error: 'Server error' });
+    }
+    if (!blogs) {
+        return res.status(404).json({ error: 'Blog not found' });
+    }
+    res.json(blogs)
+})
+} 
