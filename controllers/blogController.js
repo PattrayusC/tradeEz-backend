@@ -47,6 +47,7 @@ exports.readBlog = function(req, res) {
 
 exports.readLatestBlog = function(req,res){
     let query = {sold: false}
+    console.log("readLatest")
     Blog.find(query,null,{limit: 6, sort:{'time': -1}},function(err,Blogs){
         if (err) throw err
         res.json(Blogs)
@@ -55,6 +56,7 @@ exports.readLatestBlog = function(req,res){
 
 exports.readAllBlog = function(req,res){
     let query = {sold: false}
+    console.log("readALL")
     Blog.find(query,null,{skip: 6,sort:{'time': -1}},function(err,Blogs){
         if (err) throw err
         res.json(Blogs)
@@ -63,6 +65,7 @@ exports.readAllBlog = function(req,res){
 
 exports.readAnnouceBlog = function(req,res){
     let query = {announce: true,sold: false}
+    console.log("readAnnounce")
     Blog.find(query,null,{limit: 6, sort:{'time': -1}},function(err,blogs){
         if(err) throw err
         res.json(blogs)
