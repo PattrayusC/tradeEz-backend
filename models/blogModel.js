@@ -29,6 +29,10 @@ var blogSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    event:{
+        type: Boolean,
+        default: false
+    },
     offers: Array,
 },{collection : 'blogs'});
 
