@@ -37,14 +37,16 @@ exports.updataMyorder = function(req,res){
         if(Users[0].orderBlog.includes(req.body._id)){
             console.log("Already have")
             res.json({
-                massage: "This blog is already save"
+                joined: true
             })
         }else{
             Users[0].orderBlog.push(req.body._id)
             Users[0].save(function(err, Userss){
             if(err) throw err
             console.log("add " + req.body._id + " to Order")
-            res.json(Userss)
+            res.json({
+                joined: false
+            })
         })
         }
     })
