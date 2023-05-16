@@ -8,4 +8,5 @@ module.exports = function(app){
     app.get('/user/:uid',UserList.getUserbyUID)
     app.put('/user/:_id',UserList.updateUser)
     app.put('/updateOrder/:uid',UserList.updataMyorder)
+    app.put('/joinEvent/:uid',UserList.joinEvent)
 }
