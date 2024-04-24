@@ -40,5 +40,6 @@ routes(app)
 userRoutes(app)
 blogRoutes(app)
 
+app.use(express.static(process.cwd()+"/dist"))
 app.listen(port)
 console.log('Started on : ' + port)
