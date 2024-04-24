@@ -10,6 +10,9 @@ Just have lastest Nodejs version installed on your machine.
   // check your node version
   node --version
 
+  // create .env in root folder
+  MONGO_URI=mongodb+srv://<user>:<password>@<dbname>.zkvzaky.mongodb.net/
+
 ```
 
 ## Usage
